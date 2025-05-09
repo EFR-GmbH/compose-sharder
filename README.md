@@ -67,11 +67,6 @@ flowchart TD
         O2@{ shape: card}
         O3@{ shape: card}
     end
-    style Merge fill:#BBDEFB
-    style ShardBased fill:#BBDEFB
-    style F1 fill:#BBDEFB
-    style F2 fill:#BBDEFB
-    style F3 fill:#BBDEFB
 ```
 
 ## Requirements
