@@ -1,0 +1,38 @@
+# Dummy services showcasing compose-sharding
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "443:443"
+    networks:
+      - frontend
+    depends_on:
+      - httpd
+    x-shard: proxy
+
+  httpd:
+    image: httpd:alpine
+    environment:
+      POSTGRES_PORT: ${POSTGRES_PORT}
+    networks:
+      - frontend
+      - backend
+    x-shard: app
+
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_PORT: ${POSTGRES_PORT}
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    networks:
+      - backend
+    x-shard: db
+
+networks:
+  frontend:
+  backend:
+
+volumes:
+  dbdata:
+    x-shard: db

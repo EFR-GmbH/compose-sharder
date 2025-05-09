@@ -1,0 +1,8 @@
+# Export ports, which wasn't needed in case of docker networks
+services:
+  httpd:
+    ports:
+      - "80:80"
+  postgres:
+    ports:
+      - "$POSTGRES_PORT:5432"
